@@ -1,0 +1,38 @@
+//
+// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions
+// See https://llvm.org/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+//
+//===----------------------------------------------------------------------===//
+
+// This file refers to include/clang/Basic/TokenKinds.def
+// Basic/TokenKinds.h would include this file,
+// and fill the token:: namespace
+
+#ifndef TOK
+#define TOK(X)
+#endif
+#ifndef PUNCTUATOR
+#define PUNCTUATOR(X, Y) TOK(X)
+#endif
+// clang use KEYWORD(X, Y) Y to mark the language standard
+#ifndef KEYWORD
+#define KEYWORD(X) TOK(kw_ ## X)
+#endif
+
+KEYWORD(def)
+KEYWORD(if)
+KEYWORD(then)
+KEYWORD(else)
+KEYWORD(extern)
+
+TOK(eof)
+TOK(identifier)
+TOK(numeric_constant)
+
+PUNCTUATOR(l_paren,             "(")
+PUNCTUATOR(r_paren,             ")")
+PUNCTUATOR(plus,                "+")
+PUNCTUATOR(semi,                ";")
+PUNCTUATOR(equal,               "=")
+PUNCTUATOR(comma,               ",")

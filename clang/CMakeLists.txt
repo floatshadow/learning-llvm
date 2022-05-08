@@ -1,3 +1,4 @@
+# https://clang.llvm.org/docs/InternalsManual.html
 llvm_map_components_to_libnames(LLVM_LIBS support core)
 # weried problem that if use `clang` rather than `libclang`
 # link options would not contains libclang.so

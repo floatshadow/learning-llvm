@@ -18,10 +18,8 @@ add_definitions(${LLVM_DEFINITIONS})
 # find_package(Clang CONFIG REQUIRED)
 # message(STATUS "Using ClangConfig.cmake in: ${CLANG_CMAKE_DIR}")
 # message(STATUS "Using Clang include directory: ${CLANG_INCLUDE_DIRS}")
-# message(STATUS "Using Clang link directory: ${CLANG_CMAKE_DIR}/../../")
-include_directories(${Clang_INCLUDE_DIRS})
+# message(STATUS "Using Clang link directory: ${CLANG_LIBRARY_DIR}")
 # Currently I don't know how to set clang link directory directly
-link_directories("${CLANG_CMAKE_DIR}/../../")
 
 add_compile_options(-Wall -Wextra)
 # connected with virtuals
