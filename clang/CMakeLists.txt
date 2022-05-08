@@ -8,3 +8,13 @@ add_executable(diagnose diagnose.cc)
 target_link_libraries(diagnose
     PRIVATE ${CLANG_LIBS} ${LLVM_LIBS}
 )
+
+add_executable(tokenizer tokenizer.cc)
+target_link_libraries(tokenizer
+    PRIVATE ${CLANG_LIBS} ${LLVM_LIBS}
+)
+
+add_executable(parser parser)
+target_link_libraries(parser
+    PRIVATE ${CLANG_LIBS} ${LLVM_LIBS}
+)
