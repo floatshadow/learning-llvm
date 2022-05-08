@@ -33,6 +33,9 @@
 //          `-DeclRefExpr 0x5601d280da10 <col:16> 'int' lvalue ParmVar 0x5601d280d760 'b' 'int'
 //
 
+// You can also serialize clang AST into PCH file
+// $ clang -x c-header <header file> -o <pch file>
+
 extern "C" {
 #include "clang-c/Index.h"
 }
@@ -44,6 +47,8 @@ static cl::opt<std::string> InputFileName(cl::Positional, cl::desc("<input file>
 
 // visitor function
 enum CXChildVisitResult // break, continue and recurse
+// Parent is the Cursor to the parent node,
+// Data is a void* which can point to any data structure user would like to maintain.
 visitASTNode(CXCursor Cursor, CXCursor Parent, CXClientData Data) {
   if (clang_getCursorKind(Cursor) == CXCursor_CXXMethod ||
       clang_getCursorKind(Cursor) == CXCursor_FunctionDecl) {
@@ -78,6 +83,11 @@ int main(int argc, char **argv) {
   // AST visitor cursor struct
   // Note that this cursor is not well performs in efficiency
   CXCursor Cursor = clang_getTranslationUnitCursor(TranslationUnit);
+  // visit the children node recursively and call the CallBack function
+  // the CallBack function should return enum CXChildVisitResult
+  //  Recursive: visit the child node recursively
+  //  Continue: skip child node
+  //  Break: stop visit
   clang_visitChildren(Cursor, visitASTNode, nullptr);
   clang_disposeTranslationUnit(TranslationUnit);
   clang_disposeIndex(Index);

@@ -14,7 +14,7 @@ target_link_libraries(tokenizer
     PRIVATE ${CLANG_LIBS} ${LLVM_LIBS}
 )
 
-add_executable(parser parser)
+add_executable(parser parser.cc)
 target_link_libraries(parser
     PRIVATE ${CLANG_LIBS} ${LLVM_LIBS}
 )
