@@ -1,0 +1,7 @@
+## Example
+
+```bash
+clang Tests/algebraic.c -c -emit-llvm -O -Xclang -disable-llvm-passes 
+
+opt -load-pass-plugin=Local.so -passes="mem2reg,local-opt" algebraic.bc -disable-output
+```

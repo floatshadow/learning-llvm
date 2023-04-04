@@ -3,6 +3,10 @@ build
 cmake-debug-build
 cmake-release-build
 
+# LLVM IR files
+*.bc
+*.ll
+
 # config
 .vscode
 .idea
