@@ -247,9 +247,12 @@ struct LocalOpt : public PassInfoMixin<LocalOpt> {
 
 
     PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM) {
-        if (!runLocalOpt(F))
-            return PreservedAnalyses::all();
-        return PreservedAnalyses::none();
+        if (!runLocalOpt(F)) {
+            PreservedAnalyses PA;
+            PA.preserveSet<CFGAnalyses>();
+            return PA;
+        }
+        return PreservedAnalyses::all();
     }
 };
 
